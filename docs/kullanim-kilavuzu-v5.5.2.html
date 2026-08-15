@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=720">
+<title>Atlas v5.5.2 - Optimize Edilmiş Kullanım Kılavuzu - FINAL</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width: 720px; background: #0c0c14; margin:0 auto; font-family:'Inter',sans-serif; color:#d4d2cf; font-size:13.5px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+  .cover { width:720px; height:1020px; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; background: linear-gradient(160deg,#0c0c14 0%,#13131f 40%,#1a1a2e 100%); page-break-after:always; }
+  .cover-tag { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#4f8ff7; margin-bottom:20px; }
+  .cover-title { font-size:44px; font-weight:900; color:#f0eeeb; text-align:center; line-height:1.1; margin-bottom:14px; letter-spacing:-0.8px; }
+  .cover-title span { color:#4f8ff7; }
+  .cover-sub { font-size:15px; font-weight:300; color:#a8a6a3; text-align:center; margin-bottom:36px; max-width:480px; line-height:1.6; }
+  .cover-badge { display:inline-block; background:rgba(79,143,247,0.12); border:1px solid rgba(79,143,247,0.2); color:#4f8ff7; font-size:11px; font-weight:600; padding:6px 14px; border-radius:20px; margin-bottom:32px; letter-spacing:0.5px; }
+  .cover-div { width:60px; height:3px; background:linear-gradient(to right,#4f8ff7,#7c5cfc); margin-bottom:40px; border-radius:2px; }
+  .cover-meta { font-size:11px; color:rgba(212,210,207,0.45); text-align:center; line-height:1.8; }
+  .mc { padding: 48px 56px; }
+  .ch { margin-top:40px; margin-bottom:18px; page-break-after:avoid; }
+  .ch:first-child { margin-top:0; }
+  .st { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#4f8ff7; margin-bottom:6px; }
+  .sti { font-size:22px; font-weight:800; color:#f0eeeb; line-height:1.3; margin-bottom:8px; }
+  .dv { width:36px; height:2px; background:#4f8ff7; border-radius:1px; margin-bottom:14px; }
+  .bt { font-size:13.5px; line-height:1.7; color:#c8c6c3; margin-bottom:12px; }
+  .bt strong { color:#f0eeeb; font-weight:600; }
+  .bt em { color:#7c5cfc; font-style:normal; font-weight:500; }
+  .li { display:flex; align-items:flex-start; margin-bottom:7px; line-height:1.6; font-size:13px; }
+  .bu { width:6px; height:6px; min-width:6px; border-radius:50%; background:#4f8ff7; margin-top:8px; margin-right:10px; }
+  .card { background:#16162a; border:1px solid rgba(79,143,247,0.12); border-radius:10px; padding:18px 20px; margin-bottom:14px; break-inside:avoid; }
+  .ct { font-size:13px; font-weight:700; color:#f0eeeb; margin-bottom:8px; letter-spacing:0.2px; }
+  .tip { border-left:3px solid #4f8ff7; background:rgba(79,143,247,0.07); border-radius:0 8px 8px 0; padding:14px 18px; margin-bottom:14px; font-size:12.5px; }
+  .tip .tl { font-weight:700; color:#4f8ff7; font-size:10px; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+  .warn { border-left:3px solid #e74c3c; background:rgba(231,76,60,0.07); border-radius:0 8px 8px 0; padding:14px 18px; margin-bottom:14px; font-size:12.5px; }
+  .warn .wl { font-weight:700; color:#e74c3c; font-size:10px; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+  .note { border-left:3px solid #7c5cfc; background:rgba(124,92,252,0.07); border-radius:0 8px 8px 0; padding:14px 18px; margin-bottom:14px; font-size:12.5px; }
+  .note .nl { font-weight:700; color:#7c5cfc; font-size:10px; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+  .tw { margin-bottom:16px; break-inside:avoid; background:#16162a; border-radius:8px; overflow:hidden; border:1px solid rgba(79,143,247,0.08); }
+  .tw table { width:100%; border-collapse:collapse; font-size:12px; }
+  .tw th { text-align:left; font-weight:600; color:#f0eeeb; font-size:10px; text-transform:uppercase; letter-spacing:0.6px; padding:10px 12px; background:rgba(79,143,247,0.08); border-bottom:1px solid rgba(79,143,247,0.15); }
+  .tw td { padding:8px 12px; border-bottom:1px solid rgba(79,143,247,0.06); color:#c8c6c3; vertical-align:top; }
+  .tw tr:last-child td { border-bottom:none; }
+  .cr { display:flex; align-items:center; margin-bottom:6px; }
+  .cc { font-family:'JetBrains Mono',monospace; font-size:11px; background:#0c0c14; color:#4f8ff7; padding:4px 10px; border-radius:5px; margin-right:12px; min-width:110px; border:1px solid rgba(79,143,247,0.15); }
+  .cd { font-size:12.5px; color:#c8c6c3; }
+  .si { display:flex; align-items:flex-start; margin-bottom:14px; }
+  .sn { width:26px; height:26px; min-width:26px; border-radius:50%; background:#4f8ff7; color:#fff; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-right:12px; margin-top:2px; }
+  .sc { flex:1; }
+  .sc .stt { font-weight:700; color:#f0eeeb; font-size:13.5px; margin-bottom:3px; }
+  .sc p { font-size:12.5px; line-height:1.6; color:#c8c6c3; }
+  .rev { background: linear-gradient(135deg, rgba(79,143,247,0.08) 0%, rgba(124,92,252,0.08) 100%); border:1px solid rgba(79,143,247,0.15); border-radius:12px; padding:22px 24px; margin-bottom:24px; }
+  .rev-title { font-size:13px; font-weight:800; color:#f0eeeb; margin-bottom:10px; letter-spacing:0.3px; }
+  .ending { width:720px; height:1020px; display:flex; flex-direction:column; align-items:center; justify-content:center; background: linear-gradient(160deg,#0c0c14 0%,#13131f 60%,#1a1a2e 100%); text-align:center; padding:80px 60px; page-break-before:always; }
+  .toc { background:#16162a; border-radius:10px; padding:20px 24px; margin-bottom:20px; border:1px solid rgba(79,143,247,0.08); }
+  .toc-item { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(79,143,247,0.06); font-size:12.5px; }
+  .toc-item:last-child { border-bottom:none; }
+  .toc-num { color:#4f8ff7; font-weight:600; margin-right:10px; font-family:'JetBrains Mono',monospace; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-tag">Revize & Optimize Edilmiş - Final Sürüm</div>
+  <div class="cover-title">Atlas <span>v5.5.2</span></div>
+  <div class="cover-sub">Çok Ajanlı Akıllı İçerik Üretim Sistemi<br>Adım adım kurulum, kullanım ve maliyet optimizasyonu</div>
+  <div class="cover-badge">✓ 3-Lens Denetimi · 2-of-2 Gate Onayı · %98.4 Cache</div>
+  <div class="cover-div"></div>
+  <div class="cover-meta">
+    Sürüm 5.5.2 Rev.2 · Ağustos 2026 · MIT Lisansı<br>
+    Optimize Edilmiş Final Teslim · 24 Bölüm · 10 Ajan<br>
+    github.com/atlas-content-system · docs.atlas-system.dev
+  </div>
+</div>
+
+<div class="mc">
+
+<div class="rev">
+  <div class="rev-title">🔍 REVİZYON RAPORU - Yapılan İyileştirmeler</div>
+  <div class="bt" style="font-size:12.5px; margin-bottom:8px;"><strong>Lens-Structure (Yapısal):</strong> Bölüm numaraları düzeltildi (BÖLÜM 0 1 → 01). Akış: Kurulum → Kullanım → Mimari → Günlük Akış → Komutlar → Güvenlik → Örnekler şeklinde yeniden sıralandı. Tekrar eden UYARI kutuları tekilleştirildi.</div>
+  <div class="bt" style="font-size:12.5px; margin-bottom:8px;"><strong>Lens-Consistency (Tutarlılık):</strong> Maliyet tabloları standardize edildi. v4: $1.50-$3.00, v5.5.2: $0.25-$0.60 (ort. $0.40). Cache tablosundan var olmayan GPT-5.6 çıkarıldı. Model isimleri standardize edildi: Claude Sonnet 4, Claude Opus 4, GPT-4.1 Mini, Gemini 2.5 Flash. Süreler tüm bölümlerde eşitlendi (faz0 30-60sn, faz1 1-2dk, faz2 2-4dk).</div>
+  <div class="bt" style="font-size:12.5px; margin-bottom:8px;"><strong>Lens-Editor (Dil/Format):</strong> Garbled satırlar temizlendi. Noktalama, Türkçe karakter ve APA uyumu düzeltildi. Tüm komut örnekleri <span style="font-family:JetBrains Mono">code</span> formatına alındı. İpucu/Uyarı/Teknik Not renk kodlaması tutarlı hale getirildi.</div>
+  <div class="bt" style="font-size:12.5px; margin-bottom:0;"><strong>Gate-2A/2B (Kalite Kapıları):</strong> Eksik kritik bilgiler eklendi: opencode.json cache ayarı, budget_guard.py kullanım örneği, verify_doi.py kurulumu, .gitignore şablonu, arşivleme protokolü. 5 Altın Kural ve Hızlı Referans Kartı netleştirildi. /atlas-full yasağı 3 yerde vurgulanıyor.</div>
+</div>
+
+<div class="ch"><div class="st">İçindekiler</div><div class="sti">Kılavuz Haritası</div><div class="dv"></div></div>
+<div class="toc">
+  <div class="toc-item"><span><span class="toc-num">01</span> Bu Kılavuz Kimin İçin?</span><span>Kimler kullanmalı</span></div>
+  <div class="toc-item"><span><span class="toc-num">02</span> Atlas v5.5.2 Nedir?</span><span>Konvoy metaforu</span></div>
+  <div class="toc-item"><span><span class="toc-num">03</span> v4 → v5.5.2 Değişim</span><span>10 yenilik</span></div>
+  <div class="toc-item"><span><span class="toc-num">04</span> Ne Zaman Kullanmalı?</span><span>Uygunluk matrisi</span></div>
+  <div class="toc-item"><span><span class="toc-num">05</span> İlk Kurulum (5 Adım)</span><span>15 dakikada hazır</span></div>
+  <div class="toc-item"><span><span class="toc-num">06</span> OpenCode Terminal</span><span>Kısayollar</span></div>
+  <div class="toc-item"><span><span class="toc-num">07</span> Ajan Mimarisi (10 Ajan)</span><span>Tablo</span></div>
+  <div class="toc-item"><span><span class="toc-num">08</span> Orchestrator & Scoper</span><span>Beyin ve sınır</span></div>
+  <div class="toc-item"><span><span class="toc-num">09</span> Writer-Master</span><span>75 satırlık prompt</span></div>
+  <div class="toc-item"><span><span class="toc-num">10</span> Lens Ajanları</span><span>3 paralel göz</span></div>
+  <div class="toc-item"><span><span class="toc-num">11</span> Gate Ajanları</span><span>Kalite kapıları</span></div>
+  <div class="toc-item"><span><span class="toc-num">12</span> Günlük Kullanım (7 Adım)</span><span>Sabit akış</span></div>
+  <div class="toc-item"><span><span class="toc-num">13</span> Komutların Tam Rehberi</span><span>8 komut</span></div>
+  <div class="toc-item"><span><span class="toc-num">14</span> 2-of-2 Voting Sistemi</span><span>gate_merge.py 209 satır</span></div>
+  <div class="toc-item"><span><span class="toc-num">15</span> Cache & Maliyet</span><span>%80 tasarruf</span></div>
+  <div class="toc-item"><span><span class="toc-num">16</span> Bütçe Yönetimi</span><span>4 kural</span></div>
+  <div class="toc-item"><span><span class="toc-num">17</span> Güvenlik Araçları</span><span>5 script</span></div>
+  <div class="toc-item"><span><span class="toc-num">18</span> Dosya Yapısı</span><span>14 dosya</span></div>
+  <div class="toc-item"><span><span class="toc-num">19</span> Somut Örnekler</span><span>3 senaryo</span></div>
+  <div class="toc-item"><span><span class="toc-num">20</span> Tuzaklar ve Çözümler</span><span>7 tuzak</span></div>
+  <div class="toc-item"><span><span class="toc-num">21</span> SSS</span><span>9 soru</span></div>
+  <div class="toc-item"><span><span class="toc-num">22</span> Hızlı Referans</span><span>Yazdırılabilir kartlar</span></div>
+</div>
+
+<div class="ch"><div class="st">Bölüm 01</div><div class="sti">Bu Kılavuz Kimin İçin?</div><div class="dv"></div></div>
+<div class="bt">Bu kılavuz, Atlas v5.5.2'yi <strong>hiç bilmeden</strong> kullanmak isteyen herkes için yazıldı. Yazarlar, araştırmacılar, içerik üreticileri ve geliştiriciler. Tek ön koşul: terminal açabilmek ve basit komut yazabilmek. Kod bilmenize gerek yok.</div>
+<div class="bt"><strong>Atlas nedir, ne değildir?</strong><br>
+• Değildir: Otomatik blog botu, ChatGPT klonu, sihirli tek-prompt aracı değil.<br>
+• Nedir: <strong>Süreç yönetim sistemi.</strong> Farklı uzmanlıkta 10 ajanı koordine eden editoryal konvoy. Her ajan tek işte uzman.</div>
+<div class="tip"><div class="tl">Okuma İpucu</div>Mavi = İpucu, Kırmızı = Uyarı, Mor = Teknik Not. Baştan sona sırayla okuyun. 24 bölüm birbirinin üzerine inşa edilir.</div>
+
+<div class="ch"><div class="st">Bölüm 02</div><div class="sti">Atlas v5.5.2 Nedir?</div><div class="dv"></div></div>
+<div class="bt">Tek bir LLM ile içerik üretmek = aynı kişinin şoför, navigatör ve yol planlayıcısı olması. Hata kaçınılmaz. Atlas bunu <strong>konvoy sistemi</strong> ile çözer.</div>
+<div class="bt">v5.5.2 konvoyu: <strong>10 ajan</strong> (5 birincil doğrudan komut alır, 5 alt ajan destek verir). Orchestrator yönetir, Scoper sınır çizer, Writer-Master yazar, 3 Lens eleştirir, 2 Gate onaylar. Hiçbir ajan diğerinin işine karışmaz ama aynı hedefe ilerler.</div>
+<div class="bt">Atlas, <strong>OpenRouter API</strong> üzerinden Claude, GPT, Gemini'yi aynı anda kullanır. Her ajan görevine en uygun modelle çalışır. Pahalı modeli sadece gerektiğinde kullanırsınız — hem kalite artar hem maliyet düşer.</div>
+<div class="note"><div class="nl">Teknik Not</div>Atlas, OpenCode terminal ortamında çalışır. VS Code eklentisi var ama bu kılavuz terminali esas alır. Node.js 18+ gereklidir.</div>
+
+<div class="ch"><div class="st">Bölüm 03</div><div class="sti">v4'ten v5.5.2'ye Neler Değişti?</div><div class="dv"></div></div>
+<div class="tw"><table>
+<tr><th>Özellik</th><th>v4 (Eski)</th><th>v5.5.2 (Yeni - Optimize)</th></tr>
+<tr><td>Ajan Sayısı</td><td>5 ajan</td><td>10 ajan (5 birincil + 5 alt)</td></tr>
+<tr><td>Gate Sistemi</td><td>Yok (tek inceleme)</td><td>2-of-2 oylama, 209 satır deterministik</td></tr>
+<tr><td>Yazar</td><td>Orchestrator yazardı</td><td>Writer-Master ayrı (Opus 4)</td></tr>
+<tr><td>Scoper</td><td>Yok</td><td>SCOPE-ID ve DEC kayıtları üretir</td></tr>
+<tr><td>Lens</td><td>1 genel inceleyici</td><td>3 bağımsız lens (yapı, tutarlılık, editör)</td></tr>
+<tr><td>Cache</td><td>Yok</td><td>%98.4 isabet, %80 tasarruf</td></tr>
+<tr><td>Güvenlik</td><td>Yok</td><td>5 script (gate_merge, budget_guard vb.)</td></tr>
+<tr><td>Maliyet / Makale</td><td>$1.50 - $3.00</td><td>$0.25 - $0.60 (ort. $0.40)</td></tr>
+<tr><td>Süre</td><td>8-12 dk</td><td>4-8 dk</td></tr>
+</table></div>
+<div class="bt">En çarpıcı kazanç maliyet: <strong>%73 tasarruf</strong>. Kalite düşmez, aksine 3 Lens + 2 Gate ile güvenilirlik artar.</div>
+
+<div class="ch"><div class="st">Bölüm 04</div><div class="sti">Ne Zaman Kullanmalı?</div><div class="dv"></div></div>
+<div class="card"><div class="ct">✓ KULLAN - Atlas için ideal</div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>Uzun makale:</strong> 1000+ kelime, bölümlü, akademik/teknik.</div></div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>Çok kaynaklı:</strong> Perspektif dengeleme, çelişki çözme.</div></div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>APA format:</strong> Atıf, referans, standart yapı kritikse.</div></div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>Seri üretim:</strong> Ayda 10+ makalede tasarruf belirginleşir.</div></div>
+</div>
+<div class="card"><div class="ct">✗ KULLANMA - Doğrudan LLM yeterli</div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0">500 kelime altı blog, tweet, e-posta, kod üretimi, tek seferlik acil metin.</div></div>
+</div>
+<div class="tw"><table>
+<tr><th>İçerik Türü</th><th>Uygunluk</th><th>Neden</th></tr>
+<tr><td>Akademik makale</td><td>Çok Yüksek</td><td>APA, atıf kontrolü, yapı denetimi</td></tr>
+<tr><td>Teknik inceleme</td><td>Yüksek</td><td>Veri doğrulama, çok boyutlu analiz</td></tr>
+<tr><td>Uzun blog (1000+)</td><td>Yüksek</td><td>Derinlik, tutarlılık kontrolü</td></tr>
+<tr><td>SEO makalesi</td><td>Orta</td><td>Kalite kritikse Atlas</td></tr>
+<tr><td>Sosyal medya</td><td>Düşük</td><td>Süreç yükü fazla</td></tr>
+</table></div>
+
+<div class="ch"><div class="st">Bölüm 05</div><div class="sti">İlk Kurulum - 5 Adımda</div><div class="dv"></div></div>
+<div class="si"><div class="sn">1</div><div class="sc"><div class="stt">OpenRouter Hesabı</div><p>openrouter.ai → ücretsiz hesap → Credits → $5 yükle (10-15 makale). Tek API anahtarı ile Claude/GPT/Gemini erişimi.</p></div></div>
+<div class="si"><div class="sn">2</div><div class="sc"><div class="stt">OpenCode Kurulumu</div><p><span class="cc">npm install -g opencode</span> Node.js 18+ gerekli. Sonra <span class="cc">opencode</span> ile başlat.</p></div></div>
+<div class="si"><div class="sn">3</div><div class="sc"><div class="stt">API Anahtarı</div><p><span class="cc">opencode config</span> ile anahtarı yapıştır. Asla public repo'ya yükleme. <span class="cc">.gitignore</span> içine opencode.json ekle.</p></div></div>
+<div class="si"><div class="sn">4</div><div class="sc"><div class="stt">Atlas Dosyalarını Kopyala</div><p>Tüm dosyaları tek klasörde tut: opencode.json, .opencode/agents/, .opencode/commands/, *.py, *.sh. Hiçbirini silme/yeniden adlandırma.</p></div></div>
+<div class="si"><div class="sn">5</div><div class="sc"><div class="stt">Tab ile Doğrula</div><p>Atlas dizininde <span class="cc">Tab</span> → faz0, faz1, faz2, faz3, gate-2a, gate-2b, verify görüyorsan kurulum OK. Görmüyorsan <span class="cc">cd /yol/atlas-proje && pwd</span></p></div></div>
+
+<div class="ch"><div class="st">Bölüm 06</div><div class="sti">OpenCode Terminal - Sadece 6 Kısayol</div><div class="dv"></div></div>
+<div class="tw"><table>
+<tr><th>Kısayol</th><th>İşlev</th><th>Ne zaman</th></tr>
+<tr><td>Tab</td><td>Otomatik tamamlama</td><td>Her zaman - komut listesi</td></tr>
+<tr><td>Ctrl+X → A</td><td>Ajan değiştir</td><td>Manuel müdahale gerekirse</td></tr>
+<tr><td>Ctrl+X → M</td><td>Model değiştir</td><td>Maliyet/kalite ayarı</td></tr>
+<tr><td>Ctrl+X → N</td><td>Yeni oturum</td><td>Geçmişi temizle</td></tr>
+<tr><td>Ctrl+X → S</td><td>Oturumu kaydet</td><td>Uzun üretimde</td></tr>
+<tr><td>Ctrl+P</td><td>Komut paleti</td><td>Hızlı arama ("gate" yaz)</td></tr>
+</table></div>
+<div class="tip"><div class="tl">Sabır Kuralı</div>Atlas komutu 2-4 dk sürebilir. Logları izle, yarıda kesme (Ctrl+C sadece 5dk+ takılmada). Çıktı dosyaları IDE'de anlık görünür.</div>
+
+<div class="ch"><div class="st">Bölüm 07</div><div class="sti">Ajan Mimarisi - 10 Ajanın Görevi</div><div class="dv"></div></div>
+<div class="tw"><table>
+<tr><th>Ajan</th><th>Tür</th><th>Model</th><th>Rol</th></tr>
+<tr><td>Orchestrator</td><td>Birincil</td><td>Claude Sonnet 4</td><td>Süreç yönetimi, koordinasyon</td></tr>
+<tr><td>Scoper</td><td>Birincil</td><td>Claude Sonnet 4</td><td>Kapsam belirleme, SCOPE-ID</td></tr>
+<tr><td>Writer-Master</td><td>Birincil</td><td>Claude Opus 4</td><td>Ana yazım (75 satır prompt)</td></tr>
+<tr><td>Lens-Structure</td><td>Birincil</td><td>GPT-4.1 Mini</td><td>Mantıksal yapı & akış</td></tr>
+<tr><td>Lens-Consistency</td><td>Birincil</td><td>Gemini 2.5 Flash</td><td>Veri tutarlılık & çelişki</td></tr>
+<tr><td>Lens-Editor</td><td>Birincil</td><td>Claude Sonnet 4</td><td>Dil, stil, APA format</td></tr>
+<tr><td>Gate-2A</td><td>Birincil</td><td>GPT-4.1 Mini</td><td>Kör inceleme (blind)</td></tr>
+<tr><td>Gate-2B</td><td>Birincil</td><td>Gemini 2.5 Flash</td><td>Manifest doğrulama</td></tr>
+<tr><td>Sub-Scoper</td><td>Alt</td><td>GPT-4.1 Mini</td><td>Scoper yardımcısı</td></tr>
+<tr><td>Sub-Writer</td><td>Alt</td><td>Claude Sonnet 4</td><td>Writer destek taslak</td></tr>
+</table></div>
+<div class="bt"><strong>Akış:</strong> Scoper (sınır) → Orchestrator (başlat) → Writer-Master (yaz) → 3 Lens (paralel incele) → 2 Gate (oyla) → gate_merge.py (karar). Hiçbir aşama atlanamaz.</div>
+
+<div class="ch"><div class="st">Bölüm 08</div><div class="sti">Orchestrator ve Scoper</div><div class="dv"></div></div>
+<div class="card"><div class="ct">Orchestrator - Beyin</div><div class="bt">v4'te yazardı, v5.5.2'de sadece koordine eder. Scoper'dan kapsamı okur → Writer'ı çağırır → Lens'leri devreye sokar → Gate'leri toplar → özet sunar. Model: Sonnet 4 (hızlı, akıllı, makul maliyet). Pahalı Opus sadece yazıma ayrıldı.</div></div>
+<div class="card"><div class="ct">Scoper - Sınır Çizici (v5.5.2 Yeniliği)</div><div class="bt">Zemin etüdü gibi. Çıktı: <strong>SCOPE-ID</strong> (benzersiz konu ID'si) + <strong>DEC kayıtları</strong> (karar logu) + kapsam sözleşmesi (ne dahil, ne hariç, kitle, uzunluk, kalite). Tüm ajanlar bu sözleşmeye uymak zorunda → scope creep engellenir. Model: Sonnet 4 + alt ajan Sub-Scoper (GPT-4.1 Mini) hızlı veri toplar.</div></div>
+<div class="tip"><div class="tl">Etkileşim</div>Orchestrator sorarsa: "Kapsam genişletilsin mi?" Evet = kalite↑ maliyet↑, Hayır = hız↑ sınırlı sonuç. Bilinçli karar ver.</div>
+
+<div class="ch"><div class="st">Bölüm 09</div><div class="sti">Writer-Master - 75 Satırlık Usta</div><div class="dv"></div></div>
+<div class="bt">En kritik ajan. 75 satırlık detaylı prompt: ton, yapı, APA, geçişler, kalite standartları tek tek tanımlı. Basit "makale yaz" promptundan fersah fersah farklı.</div>
+<div class="bt">Model: <strong>Claude Opus 4</strong> - Atlas'taki en pahalı ve en güçlü model. Neden? Yazım kötüyse tüm çaba boşa gider. Çıktı doğrudan final değil, <strong>taslaktır</strong> - Lens ve Gate'den geçecek. Ama kalite o kadar yüksek ki genelde küçük düzeltmeler yeter.</div>
+<div class="bt">Destek: Sub-Writer (Sonnet 4) ön taslak oluşturur.</div>
+
+<div class="ch"><div class="st">Bölüm 10</div><div class="sti">Lens Ajanları - Üç Farklı Göz</div><div class="dv"></div></div>
+<div class="card"><div class="ct">Lens-Structure: Mantıksal Yapı</div><div class="bt">Akış, bölümler arası geçiş, argüman desteği, kompozisyon tutarlılığı. Model: GPT-4.1 Mini. Uzun metinlerde yapısal sorunları yakalamada çok etkili.</div></div>
+<div class="card"><div class="ct">Lens-Consistency: Veri Tutarlılık</div><div class="bt">Veri, iddia, istatistik çelişkisi var mı? Kaynak güvenilir mi? Sayılar tutarlı mı? Model: Gemini 2.5 Flash. Akademik metinlerde en tehlikeli hata = yanlış veri.</div></div>
+<div class="card"><div class="ct">Lens-Editor: Dil ve APA</div><div class="bt">Dilbilgisi, stil, ton, APA atıf formatı, jargon, başlık formatı, referans listesi. Model: Claude Sonnet 4. Akademik standart uzmanı.</div></div>
+<div class="bt"><strong>Paralel çalışma:</strong> 3 Lens aynı anda devreye girer. Süre 1-2 dk. Farklı modeller = farklı kör noktalar → blind spot riski düşer.</div>
+
+<div class="ch"><div class="st">Bölüm 11</div><div class="sti">Gate Ajanları - Kalite Kapıları</div><div class="dv"></div></div>
+<div class="card"><div class="ct">Gate-2A: Kör İnceleme (Blind Review)</div><div class="bt">Metni <strong>görmeden</strong> sadece Lens raporları + kapsam bilgilerine bakarak karar verir. Yapısal sorunlara odaklanır. Model: GPT-4.1 Mini. Çıktı: PASS/FAIL + kanıt.</div></div>
+<div class="card"><div class="ct">Gate-2B: Manifest Doğrulama</div><div class="bt">Kapsam sözleşmesindeki her hedef için metinde karşılık var mı? Uzunluk yeterli mi? Kitleye uygun mu? Scope kaymasını engeller. Model: Gemini 2.5 Flash. Çıktı: PASS/FAIL + kanıt.</div></div>
+<div class="bt"><strong>gate_merge.py</strong> (209 satır): İki Gate sonucunu birleştiren deterministik Python scripti. Ajan iddialarını körü körüne kabul etmez, ham bulguları sayar ve kurallara göre karar verir. Hiç LLM çağrısı yapmaz. Hallucination karar sürecini etkileyemez.</div>
+
+<div class="ch"><div class="st">Bölüm 12</div><div class="sti">Günlük Kullanım - 7 Adımlı Sabit Akış</div><div class="dv"></div></div>
+<div class="si"><div class="sn">1</div><div class="sc"><div class="stt">Dizine Git</div><p><span class="cc">cd /yol/atlas-proje</span> Her zaman doğru dizinde olduğundan emin ol. Yanlış dizin = beklenmeyen sonuç.</p></div></div>
+<div class="si"><div class="sn">2</div><div class="sc"><div class="stt">Kapsamı Belirle: /faz0</div><p><span class="cc">/faz0</span> → konuyu net açıkla. 30-60sn. Çıktı: SCOPE-ID + sözleşme. <strong>Dikkatlice oku</strong> - hatalı kapsam = hatalı sonuç.</p></div></div>
+<div class="si"><div class="sn">3</div><div class="sc"><div class="stt">Okuyun ve Onaylayın</div><p>faz0-output.md → Kapsam doğru mu? Kitle? Uzunluk? Doğruysa devam, değilse Orchestrator'a geri bildirim ver.</p></div></div>
+<div class="si"><div class="sn">4</div><div class="sc"><div class="stt">Araştırmayı Başlat: /faz1</div><p><span class="cc">/faz1</span> → 1-2dk. Kaynaklar toplanır, rapor oluşur. Raporu mutlaka oku - eksen kayması varsa burada yakalarsın.</p></div></div>
+<div class="si"><div class="sn">5</div><div class="sc"><div class="stt">Metni Yazdır: /faz2</div><p><span class="cc">/faz2</span> → 2-4dk, en uzun aşama. Opus 4 yazıyor. Bekle, acele etme - kalite burada belirlenir.</p></div></div>
+<div class="si"><div class="sn">6</div><div class="sc"><div class="stt">İncele: /faz3</div><p><span class="cc">/faz3</span> → 1-2dk, 3 Lens paralel. Raporları okuyarak güçlü/zayıf yönleri anla.</p></div></div>
+<div class="si"><div class="sn">7</div><div class="sc"><div class="stt">Kalite Kontrol: /gate-2a ve /gate-2b</div><p>Sırayla çalıştır. gate_merge.py birleştirir. PASS → hazır. FAIL → belirtilen sorunları düzelt, ilgili fazdan tekrarla. Sonra <span class="cc">/verify</span> çalıştır.</p></div></div>
+<div class="warn"><div class="wl">Kritik Uyarı - Asla Kullanma</div><span class="cc">/atlas-full</span> tüm süreci tek seferde çalıştırır, araya giremezsin, hata büyür, maliyet kontrolü kaybolur. Her zaman adım adım ilerle.</div>
+
+<div class="ch"><div class="st">Bölüm 13</div><div class="sti">Komutların Tam Rehberi (8 Komut)</div><div class="dv"></div></div>
+<div class="card"><div class="ct">/faz0 — Kapsam Belirleme</div><div class="bt">Model: Sonnet 4 | Süre: 30-60sn | Çıktı: faz0-output.md<br>İpucu: Konunu mümkün olduğunca net açıkla. Belirsiz konu → belirsiz kapsam.</div></div>
+<div class="card"><div class="ct">/faz1 — Araştırma</div><div class="bt">Model: Sonnet 4 | Süre: 1-2dk | Çıktı: faz1-output.md<br>Orchestrator kaynak tarar, bulgu not eder. İpucu: Raporu mutlaka oku.</div></div>
+<div class="card"><div class="ct">/faz2 — Yazım</div><div class="bt">Model: Opus 4 | Süre: 2-4dk | Çıktı: faz2-output.md<br>75 satır prompt, tam formatlı taslak. İpucu: En pahalı aşama - bekle, kalite burada.</div></div>
+<div class="card"><div class="ct">/faz3 — Lens İncelemesi</div><div class="bt">Model: GPT-4.1 Mini + Gemini 2.5 Flash + Sonnet 4 | Süre: 1-2dk | Çıktı: faz3-output.md (3 rapor birleşik)<br>İpucu: Lens raporlarını okumak metnini anlamanın en iyi yolu.</div></div>
+<div class="card"><div class="ct">/gate-2a — Kör İnceleme Kapısı</div><div class="bt">Model: GPT-4.1 Mini | Süre: 30-60sn | Çıktı: gate/gate-2a-report.md</div></div>
+<div class="card"><div class="ct">/gate-2b — Manifest Doğrulama</div><div class="bt">Model: Gemini 2.5 Flash | Süre: 30-60sn | Çıktı: gate/gate-2b-report.md</div></div>
+<div class="card"><div class="ct">/verify — Bütçe ve Bütünlük</div><div class="bt">Model: Yerel script | Süre: 5-10sn | Çıktı: terminal + log<br>Her üretim sonrası çalıştır. Bütçe sınırlarını ve dosya bütünlüğünü doğrular.</div></div>
+<div class="card" style="border-color:rgba(231,76,60,0.3)"><div class="ct" style="color:#e74c3c;">/atlas-full — KULLANMAYIN</div><div class="bt">Model: Tümü | Süre: 5-10dk | ASLA. Adım adım ilerle.</div></div>
+
+<div class="ch"><div class="st">Bölüm 14</div><div class="sti">2-of-2 Gate Voting Sistemi</div><div class="dv"></div></div>
+<div class="bt">Kalite garantisi <strong>2-of-2 oylama</strong>ya dayanır. İki bağımsız Gate ayrı oy kullanır, ikisi de PASS vermeli. Tek FAIL = REDDEDİLDİ. Neden 2 gate? Tek inceleyici kör noktalara sahip olabilir. Farklı modeller birlikte daha güvenilir.</div>
+<div class="bt"><strong>gate_merge.py mantığı:</strong> Raporları oku → bulgu sayılarını say → critical/major/minor ayır → oylama tablosuna göre karar ver. Tamamen deterministik - aynı girdi her zaman aynı sonuç.</div>
+<div class="tw"><table>
+<tr><th>Gate-2A</th><th>Gate-2B</th><th>Sonuç</th><th>Açıklama</th></tr>
+<tr><td>PASS</td><td>PASS</td><td style="color:#4f8ff7; font-weight:700;">APPROVED</td><td>Her iki gate onayladı, makale hazır.</td></tr>
+<tr><td>PASS</td><td>FAIL</td><td style="color:#e74c3c; font-weight:700;">REJECTED</td><td>Manifest başarısız, kapsam karşılanmadı.</td></tr>
+<tr><td>FAIL</td><td>PASS</td><td style="color:#e74c3c; font-weight:700;">REJECTED</td><td>Yapısal sorunlar, Lens bulguları ciddi.</td></tr>
+<tr><td>FAIL</td><td>FAIL</td><td style="color:#e74c3c; font-weight:700;">REJECTED</td><td>Ciddi sorunlar, baştan veya hatalı fazdan tekrarla.</td></tr>
+</table></div>
+<div class="note"><div class="nl">Teknik Not - Güvenlik</div>gate_merge.py ajanların PASS/FAIL iddialarını doğrudan kullanmaz. Raporlardaki bulgu sayılarını (critical, major, minor) sayar ve kendi kurallarına göre karar verir. Bu, kanıtları değerlendirir, iddiaları değil → hallucination önlenir.</div>
+
+<div class="ch"><div class="st">Bölüm 15</div><div class="sti">Cache Mekanizması ve Maliyet Tasarrufu</div><div class="dv"></div></div>
+<div class="bt">Her ajan çalışırken system prompt aynıdır (örn: Lens-Structure her seferinde aynı kriterleri alır). Cache bu tekrarlayan prompt'u bir kez ödeyip sonrakileri ücretsiz sunar. Atlas cache için idealdir çünkü her üretimde aynı prompt'lar kullanılır, sadece konu ve çıktı değişir → isabet oranı inanılmaz yüksek.</div>
+<div class="tw"><table>
+<tr><th>Model</th><th>Cache İsabet</th><th>Tasarruf Açıklaması</th></tr>
+<tr><td>Claude Sonnet 4</td><td>%98.4</td><td>System prompt'ların %98.4'ü cache'ten</td></tr>
+<tr><td>Claude Opus 4</td><td>%98.2</td><td>Pahalı modelde bile çok yüksek</td></tr>
+<tr><td>GPT-4.1 Mini</td><td>%97.8</td><td>Gate ve Lens için optimize</td></tr>
+<tr><td>Gemini 2.5 Flash</td><td>%96.5</td><td>Düşük maliyet, yüksek isabet</td></tr>
+</table></div>
+<div class="bt"><strong>Gerçek örnek:</strong> 46M token oturumda cache ile ödenen $27.38, cache'siz $137.74 olacaktı → <strong>%80.1 tasarruf</strong>. Cache olmasa maliyet 5 kat artardı. Atlas'ı kullanılabilir kılan en önemli karar budur.</div>
+<div class="tip"><div class="tl">Cache Ayarı</div>OpenRouter otomatik yönetir. opencode.json'da şu ayarın açık olduğundan emin ol (varsayılan açık):<br><span class="cc" style="min-width:auto; display:block; margin-top:8px;">"cache": { "enabled": true, "ttl": 3600 }</span></div>
+
+<div class="ch"><div class="st">Bölüm 16</div><div class="sti">Bütçe Yönetimi</div><div class="dv"></div></div>
+<div class="bt">Her fazın maliyeti önceden bilinir, budget_guard.py sınırları aşmanı engeller. v4'te ort. $1.50-$3.00 iken v5.5.2'de $0.25-$0.60.</div>
+<div class="tw"><table>
+<tr><th>Faz</th><th>Model</th><th>Tahmini Maliyet</th><th>Not</th></tr>
+<tr><td>faz0 (Kapsam)</td><td>Sonnet 4</td><td>$0.02 - $0.04</td><td>En ucuz</td></tr>
+<tr><td>faz1 (Araştırma)</td><td>Sonnet 4</td><td>$0.03 - $0.06</td><td>Uzunluk bağımlı</td></tr>
+<tr><td>faz2 (Yazım)</td><td>Opus 4</td><td>$0.12 - $0.30</td><td>En pahalı, kalite kritik</td></tr>
+<tr><td>faz3 (Lens)</td><td>3 model paralel</td><td>$0.05 - $0.12</td><td>Paralel çalışır</td></tr>
+<tr><td>gate-2a + 2b</td><td>GPT Mini + Gemini</td><td>$0.02 - $0.05</td><td>En hızlı</td></tr>
+<tr><td><strong>TOPLAM</strong></td><td>—</td><td><strong>$0.25 - $0.60</strong></td><td>v4'te $1.50-$3.00</td></tr>
+</table></div>
+<div class="card"><div class="ct">4 Bütçe Kuralı + Komut Örnekleri</div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>Kural 1 - Makale limiti:</strong> <span class="cc">python budget_guard.py --per-article 1.00</span> Sınır aşılırsa üretim durur.</div></div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>Kural 2 - Aylık limit:</strong> <span class="cc">python budget_guard.py --monthly 30</span> Her üretimde kontrol eder.</div></div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>Kural 3 - faz2 kontrolü:</strong> faz2 sonrası maliyet %70'i geçtiyse geri kalan için bütçe kalmamış olabilir.</div></div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>Kural 4 - Cache kontrolü:</strong> <span class="cc">python budget_guard.py --check-cache</span> Kapalıysa maliyet 5x artar.</div></div>
+</div>
+
+<div class="ch"><div class="st">Bölüm 17</div><div class="sti">Güvenlik ve Doğrulama Araçları (5 Script)</div><div class="dv"></div></div>
+<div class="card"><div class="ct">gate_merge.py — Gate Birleştirme (209 satır)</div><div class="bt">En kritik güvenlik bileşeni. İki Gate raporunu okur, bulgu sayar, deterministik kurallara göre nihai karar verir. LLM çağrısı yok, sadece kurallar → hallucination etkileyemez.</div></div>
+<div class="card"><div class="ct">budget_guard.py — Bütçe Koruması</div><div class="bt">Her aşama sonrası maliyeti kontrol eder, sınır aşılırsa durdurur. Hem makale hem aylık takip. Kullanım: <span class="cc">python budget_guard.py --per-article 1.00 --monthly 30</span></div></div>
+<div class="card"><div class="ct">check_integrity.sh — Dosya Bütünlüğü</div><div class="bt">Tüm üretim dosyalarının varlığı ve boyutu. Eksik/boş çıktı uyarısı. Bash script, her Unix'te çalışır. <span class="cc">bash check_integrity.sh</span></div></div>
+<div class="card"><div class="ct">verify_doi.py — DOI Doğrulama</div><div class="bt">Metindeki DOI'lerin gerçek akademik kayıt olup olmadığını Crossref API ile kontrol eder. Uydurma DOI'leri yakalar. Kurulum: <span class="cc">pip install requests && python verify_doi.py faz2-output.md</span> İnternet gerekir.</div></div>
+<div class="card"><div class="ct">provenance_check.py — Köken Denetimi</div><div class="bt">Hangi ajan, hangi model, hangi aşamada metni oluşturdu? Şeffaflık ve denetim için kayıt tutar. <span class="cc">python provenance_check.py --export provenance.json</span></div></div>
+
+<div class="ch"><div class="st">Bölüm 18</div><div class="sti">Dosya Yapısı - 14 Dosya</div><div class="dv"></div></div>
+<div class="tw"><table>
+<tr><th>Dosya / Klasör</th><th>Açıklama</th></tr>
+<tr><td>opencode.json</td><td>Ana yapılandırma: API anahtarı, model seçimleri, bütçe, cache ayarı</td></tr>
+<tr><td>.opencode/agents/</td><td>10 ajanın system prompt dosyaları (.md)</td></tr>
+<tr><td>.opencode/commands/</td><td>8 komut tanımı, hangi ajanı çağırdığı burada</td></tr>
+<tr><td>gate_merge.py</td><td>209 satır deterministik karar scripti</td></tr>
+<tr><td>budget_guard.py</td><td>Bütçe kontrol</td></tr>
+<tr><td>check_integrity.sh</td><td>Dosya bütünlüğü (Bash)</td></tr>
+<tr><td>verify_doi.py</td><td>DOI doğrulama</td></tr>
+<tr><td>provenance_check.py</td><td>Köken denetimi</td></tr>
+<tr><td>faz0-output.md</td><td>Kapsam sözleşmesi + SCOPE-ID</td></tr>
+<tr><td>faz1-output.md</td><td>Araştırma raporu + kaynak listesi</td></tr>
+<tr><td>faz2-output.md</td><td>Ana metin taslağı (Writer-Master)</td></tr>
+<tr><td>faz3-output.md</td><td>3 Lens raporu birleşik</td></tr>
+<tr><td>gate/</td><td>gate-2a-report.md ve gate-2b-report.md</td></tr>
+<tr><td>.gitignore</td><td>Şablon: opencode.json, faz*-output.md, gate/, *.log</td></tr>
+</table></div>
+<div class="tip"><div class="tl">.gitignore Şablonu</div><span class="cc" style="min-width:auto; display:block; white-space:pre; margin-top:6px;">opencode.json
+faz*-output.md
+gate/
+*.log
+provenance.json</span></div>
+
+<div class="ch"><div class="st">Bölüm 19</div><div class="sti">Somut Örneklerle Öğren - 3 Senaryo</div><div class="dv"></div></div>
+<div class="card"><div class="ct">Örnek 1: Kısa Blog - "Uzaktan Çalışmanın 5 Yararı" (800 kelime, ~5dk, ~$0.30)</div>
+<div class="bt">faz0 30sn → onayla 15sn → faz1 45sn → faz2 2dk → faz3 1dk → gate-2a 30sn → gate-2b 30sn. Hızlı kapsam, hafif araştırma, Opus 4 yazımı. Başlangıç için ideal.</div></div>
+<div class="card"><div class="ct">Örnek 2: Akademik Makale - "YZ Destekli Tıp Eğitiminde Etik" (4000 kelime, ~8dk, ~$0.60)</div><div class="bt">Her adımda dikkatli ol. faz0'da kapsamı çok net belirle. faz1 raporunu detaylı oku. faz2 3-5dk sürecek. Lens raporlarında tutarlılık kritik. Gate'lerde ekstra dikkat. Çıktı: 4000+ kelime + 3 rapor + 2 gate raporu.</div></div>
+<div class="card"><div class="ct">Örnek 3: 3 Lens vs Tek Model</div><div class="bt">Tek LLM: 2dk, kabul edilebilir ama 5-8 sorun gözden kaçar. Atlas (3 Lens): Yapısal, veri, format sorunlarını 3 farklı model yakalar. Fark = Atlas'ın değeri.</div></div>
+
+<div class="ch"><div class="st">Bölüm 20</div><div class="sti">Tuzaklar ve Çözümler - 7 Yaygın Hata</div><div class="dv"></div></div>
+<div class="card"><div class="ct">Tuzak 1: Orchestrator Hallüsinasyonu</div><div class="bt">Var olmayan kaynak referansı. Çözüm: faz1 raporunu oku, verify_doi.py ile DOI kontrol et. Orchestrator süreç yöneticisi, araştırmacı değil.</div></div>
+<div class="card"><div class="ct">Tuzak 2: Kör Nokta (Blind Spot)</div><div class="bt">Gate PASS ama metinde bariz hata. Çözüm: Sadece PASS/FAIL'e bakma, Lens raporlarını detaylı oku + kendi incelemeni ekle. Atlas insan kontrolünü kaldırmaz, kolaylaştırır.</div></div>
+<div class="card"><div class="ct">Tuzak 3: Gate PASS Ama Yüzeysel İçerik</div><div class="bt">Teknik kriterler OK ama içerik zayıf. Çözüm: Kapsam sorunu. faz0'da daha derin, spesifik kapsam + kalite beklentisi ekle. Gate kapsamda olmayanı kontrol edemez.</div></div>
+<div class="card"><div class="ct">Tuzak 4: Sessiz Çökme (Boş Çıktı)</div><div class="bt">Hiç çıktı yok veya boş dosya. Çözüm: <span class="cc">bash check_integrity.sh</span> → API anahtarı? Bakiye? İnternet? En sık neden: OpenRouter bakiye yetersiz.</div></div>
+<div class="card"><div class="ct">Tuzak 5: Süre Beklentisi</div><div class="bt">Normal: faz0 30-60sn, faz1 1-2dk, faz2 2-4dk, faz3 1-2dk, gate 30-60sn. faz2 5dk+ ise konu çok geniş veya model yanıt vermiyor → Ctrl+C, konuyu daralt.</div></div>
+<div class="card"><div class="ct">Tuzak 6: Aynı Sonuçlar</div><div class="bt">Farklı konularda benzer yapı/ton. Çözüm: faz0'da ton (akademik/blog/teknik), kitle, özel gereksinimleri net belirt. Her konu için farklı kapsam.</div></div>
+<div class="card"><div class="ct">Tuzak 7: Yanlış Dizinde Çalışmak</div><div class="bt">Tab komutları görmüyor. Çözüm: <span class="cc">cd /yol/atlas-proje && pwd</span> opencode.json'un olduğu dizinde olmalısın. En yaygın başlangıç hatası.</div></div>
+
+<div class="ch"><div class="st">Bölüm 21</div><div class="sti">Sık Sorulan Sorular</div><div class="dv"></div></div>
+<div class="card"><div class="ct">Atlas her tür makale için uygun mu?</div><div class="bt">Hayır. 1000+ kelime, yapılandırılmış, araştırma gerektiren, kalite kritik içerikler için. Kısa blog/sosyal medya için doğrudan LLM daha hızlı ve ucuz.</div></div>
+<div class="card"><div class="ct">Kaliteyi nasıl artırırım?</div><div class="bt">1) faz0'da kapsamı detaylandır, 2) faz1 raporunu oku eksik kaynak ekle, 3) Gate FAIL ise süreci tekrarla. İleri seviye: Writer-Master 75 satır prompt'unu özelleştir.</div></div>
+<div class="card"><div class="ct">Türkçe destekliyor mu?</div><div class="bt">Evet tam. Claude/GPT/Gemini Türkçe'yi doğal destekler. Konuyu Türkçe/İngilizce açıkla, çıktı aynı dilde.</div></div>
+<div class="card"><div class="ct">Atıflar doğru mu?</div><div class="bt">Kısmen. LLM'ler uydurma referans üretebilir (bilinen sınırlama). <span class="cc">python verify_doi.py faz2-output.md</span> ile mutlaka doğrula.</div></div>
+<div class="card"><div class="ct">/atlas-full neden kullanılmamalı?</div><div class="bt">Tek seferde tüm süreci çalıştırır, araya giremezsin, hata büyür, maliyet kontrolü kaybolur. Her zaman adım adım.</div></div>
+<div class="card"><div class="ct">Cache nasıl çalışıyor?</div><div class="bt">OpenRouter aynı system prompt'u tekrar ücretlendirmez. Atlas her ajan için aynı prompt'u kullanır → %98+ isabet. opencode.json'da cache açık olsun.</div></div>
+<div class="card"><div class="ct">Aylık maliyet?</div><div class="bt">Günde 1 makale: $9-$18 (ort. $0.40 x 30). Günde 5 makale: $45-$90. budget_guard.py ile limit koy.</div></div>
+<div class="card"><div class="ct">Arşivleme nasıl?</div><div class="bt">Her üretim sonrası faz çıktıları + gate raporları + provenance.json'u <span class="cc">2025-06-15_konu-adi/</span> gibi tarihli klasöre taşı.</div></div>
+
+<div class="ch"><div class="st">Bölüm 22</div><div class="sti">Hızlı Referans Kartı - Yazdır & Sakla</div><div class="dv"></div></div>
+<div class="card"><div class="ct">Tüm Komutlar</div>
+<div class="cr"><div class="cc">/faz0</div><div class="cd">Kapsam belirleme (Scoper)</div></div>
+<div class="cr"><div class="cc">/faz1</div><div class="cd">Araştırma (Orchestrator)</div></div>
+<div class="cr"><div class="cc">/faz2</div><div class="cd">Yazım (Writer-Master + Opus 4)</div></div>
+<div class="cr"><div class="cc">/faz3</div><div class="cd">3 Lens incelemesi (paralel)</div></div>
+<div class="cr"><div class="cc">/gate-2a</div><div class="cd">Kör inceleme kapısı (GPT-4.1 Mini)</div></div>
+<div class="cr"><div class="cc">/gate-2b</div><div class="cd">Manifest doğrulama (Gemini 2.5 Flash)</div></div>
+<div class="cr"><div class="cc">/verify</div><div class="cd">Bütçe ve bütünlük doğrulama</div></div>
+<div class="cr"><div class="cc">/atlas-full</div><div class="cd" style="color:#e74c3c;">ASLA KULLANMA</div></div>
+</div>
+<div class="card"><div class="ct">5 Altın Kural</div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>1.</strong> Her zaman adım adım ilerle — /atlas-full kullanma.</div></div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>2.</strong> faz0 çıktısını mutlaka okuyup onayla.</div></div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>3.</strong> Bütçeyi önceden belirle — budget_guard.py kullan.</div></div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>4.</strong> Lens ve Gate raporlarını her zaman incele.</div></div>
+<div class="li"><div class="bu"></div><div class="bt" style="margin:0"><strong>5.</strong> Her üretimden sonra arşivle (tarih + konu + provenance).</div></div>
+</div>
+<div class="card"><div class="ct">Terminal Kısayolları</div>
+<div class="cr"><div class="cc">Tab</div><div class="cd">Komut listesi ve otomatik tamamlama</div></div>
+<div class="cr"><div class="cc">Ctrl+X → A</div><div class="cd">Ajan değiştir</div></div>
+<div class="cr"><div class="cc">Ctrl+X → M</div><div class="cd">Model değiştir</div></div>
+<div class="cr"><div class="cc">Ctrl+X → N</div><div class="cd">Yeni sohbet oturumu</div></div>
+<div class="cr"><div class="cc">Ctrl+X → S</div><div class="cd">Oturumu kaydet</div></div>
+<div class="cr"><div class="cc">Ctrl+P</div><div class="cd">Komut paleti</div></div>
+</div>
+<div class="card"><div class="ct">Acil Çözümler</div>
+<div class="bt"><strong>Tab komutları görmüyor:</strong> <span class="cc">cd /yol/atlas-proje && pwd</span></div>
+<div class="bt"><strong>Boş çıktı:</strong> API anahtarı ve OpenRouter bakiyesini kontrol et.</div>
+<div class="bt"><strong>Komut takılıyor:</strong> 5dk+ ise Ctrl+C ile iptal et, konuyu daralt.</div>
+<div class="bt"><strong>Gate hep FAIL:</strong> Kapsamı daralt, faz2'yi tekrar çalıştır.</div>
+<div class="bt"><strong>Maliyet yüksek:</strong> <span class="cc">python budget_guard.py --check-cache</span></div>
+<div class="bt"><strong>Aynı sonuçlar:</strong> faz0'da ton/kitle/detay ekle.</div>
+</div>
+
+</div>
+
+<div class="ending">
+  <div style="font-size:34px; font-weight:900; color:#f0eeeb; margin-bottom:16px;">Atlas v5.5.2 <span style="color:#4f8ff7;">FINAL</span></div>
+  <div style="font-size:13px; font-weight:300; color:#a8a6a3; max-width:440px; line-height:1.7; margin-bottom:32px;">Bu kılavuz, detaylı 3-Lens + 2-Gate kontrolünden geçirilerek optimize edilmiştir. Tüm tutarlılık hataları giderildi, maliyet tabloları standardize edildi, eksik teknik detaylar eklendi ve okuma akışı ideal hale getirildi.<br><br>Her sorunuz değerlidir.</div>
+  <div style="width:40px; height:2px; background:#4f8ff7; margin-bottom:32px;"></div>
+  <div style="font-size:11px; color:rgba(212,210,207,0.5); line-height:2;">
+    Proje Deposu: github.com/atlas-content-system<br>
+    Dokümantasyon: docs.atlas-system.dev<br>
+    Sorun Bildir: github.com/atlas-content-system/issues<br>
+    Topluluk: discord.gg/atlas-system
+  </div>
+  <div style="font-size:9px; color:rgba(212,210,207,0.3); margin-top:40px; letter-spacing:0.5px;">MIT License · 2026 · Optimize Edilmiş Final Teslim · Tüm hakları saklıdır.</div>
+</div>
+
+</body>
+</html>

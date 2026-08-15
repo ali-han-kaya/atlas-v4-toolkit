@@ -1,14 +1,15 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "openrouter/anthropic/claude-sonnet-4",
+  "default_agent": "atlas-orchestrator",
+  "instructions": ["AGENTS.md"],
   "provider": {
     "openrouter": {
       "models": {
         "anthropic/claude-sonnet-4": {},
         "google/gemini-2.5-flash": {},
-        "openai/gpt-oss-120b": {},
-        "openai/gpt-oss-20b": {},
-        "meta-llama/llama-3.3-70b-instruct": {}
+        "meta-llama/llama-3.3-70b-instruct": {},
+        "openai/gpt-oss-20b": {}
       }
     }
   }
